@@ -8,7 +8,7 @@ const wallet = (state = WALLER_INITIAL_STATE, action) => {
   case 'CHANGE_CURRENCIES':
     return {
       ...state,
-      currencies: [...state.currencies, action.payload],
+      currencies: [...state.currencies, ...action.payload],
     };
   case 'CHANGE_EXPENSES':
     return {

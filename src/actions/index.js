@@ -12,3 +12,15 @@ export const walletExpensesAction = (payload) => ({
   type: 'CHANGE_EXPENSES',
   payload,
 });
+
+export const fetchCurrencies = () => async (dispatch) => {
+  try {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await response.json();
+    delete data.USDT;
+    dispatch(walletCurrenciesAction(Object.keys(data)));
+    return data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
