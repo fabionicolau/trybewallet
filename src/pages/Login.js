@@ -52,16 +52,18 @@ class Login extends React.Component {
           email:
           <input
             data-testid="email-input"
+            id="email"
             type="email"
             name="email"
             value={ email }
             onChange={ this.handleInputChange }
           />
         </label>
-        <label htmlFor="senha">
+        <label htmlFor="password">
           senha:
           <input
             data-testid="password-input"
+            id="password"
             type="password"
             name="password"
             value={ password }
