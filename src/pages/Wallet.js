@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import Header from '../components/Header';
-import { fetchCurrencies } from '../actions';
+import { fetchCurrencies, walletExpensesAction } from '../actions';
+import fetchAPI from '../helpers/fetchAPI';
 
 const PAYMENT_METHOD = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const EXPENSE_TAG = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
@@ -11,17 +12,19 @@ class Wallet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      amount: '',
+      id: 0,
+      value: '',
       description: '',
-      currency: '',
+      currency: 'USD',
       method: '',
-      expense: '',
+      tag: '',
+      exchangeRates: {},
     };
   }
 
   componentDidMount() {
-    const { currenciesDispach } = this.props;
-    currenciesDispach(fetchCurrencies());
+    const { currenciesDispatch } = this.props;
+    currenciesDispatch();
   }
 
   handleInputChange = ({ target: { value, name } }) => {
@@ -30,22 +33,35 @@ class Wallet extends React.Component {
     });
   }
 
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const { walletExpensesDispatch, expenses } = this.props;
+    const data = await fetchAPI();
+    this.setState(({
+      id: expenses.length,
+      exchangeRates: data,
+    }));
+    walletExpensesDispatch(this.state);
+    this.setState({
+      value: '',
+    });
+  }
+
   render() {
-    const { amount, description, currency, method, expense } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     const { currencies } = this.props;
     return (
       <div>
         <Header />
-        <div>
-          TrybeWallet
-          <label htmlFor="amount">
+        <form action="">
+          <label htmlFor="value">
             Valor:
             <input
               data-testid="value-input"
-              id="amount"
+              id="value"
               type="number"
-              name="amount"
-              value={ amount }
+              name="value"
+              value={ value }
               onChange={ this.handleInputChange }
             />
           </label>
@@ -76,14 +92,14 @@ class Wallet extends React.Component {
               ))}
             </select>
           </label>
-          <label htmlFor="expense">
+          <label htmlFor="tag">
             Categoria:
             <select
               data-testid="tag-input"
-              name="expense"
-              id="expense"
+              name="tag"
+              id="tag"
               onChange={ this.handleInputChange }
-              value={ expense }
+              value={ tag }
             >
               {EXPENSE_TAG.map((expenses, index) => (
                 <option key={ index }>{expenses}</option>
@@ -95,24 +111,33 @@ class Wallet extends React.Component {
             <input
               data-testid="description-input"
               id="description"
-              type="description"
+              type="text"
               name="description"
               value={ description }
               onChange={ this.handleInputChange }
             />
           </label>
-        </div>
+          <button
+            type="submit"
+            onClick={ this.handleSubmit }
+          >
+            Adicionar despesa
+
+          </button>
+        </form>
       </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  currenciesDispach: () => dispatch(fetchCurrencies()),
+  currenciesDispatch: () => dispatch(fetchCurrencies()),
+  walletExpensesDispatch: (value) => dispatch(walletExpensesAction(value)),
 });
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
