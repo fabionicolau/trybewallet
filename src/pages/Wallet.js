@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 import Header from '../components/Header';
 import { fetchCurrencies, walletExpensesAction } from '../actions';
 import fetchAPI from '../helpers/fetchAPI';
+import Table from '../components/Table';
 
 const PAYMENT_METHOD = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const EXPENSE_TAG = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
@@ -125,6 +126,9 @@ class Wallet extends React.Component {
 
           </button>
         </form>
+        <div>
+          <Table />
+        </div>
       </div>
     );
   }
