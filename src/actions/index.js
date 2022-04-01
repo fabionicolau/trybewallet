@@ -15,6 +15,11 @@ export const walletExpensesAction = (payload) => ({
   payload,
 });
 
+export const walletRemoveExpensesAction = (payload) => ({
+  type: 'REMOVE_EXPENSES',
+  payload,
+});
+
 export const fetchCurrencies = () => async (dispatch) => {
   const data = await fetchAPI();
   dispatch(walletCurrenciesAction(Object.keys(data)));
