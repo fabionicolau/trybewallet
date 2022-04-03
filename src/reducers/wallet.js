@@ -18,7 +18,17 @@ const wallet = (state = WALLER_INITIAL_STATE, action) => {
   case 'REMOVE_EXPENSES':
     return {
       ...state,
-      expenses: action.payload,
+      expenses: [...action.payload],
+    };
+  case 'EDIT_EXPENSES':
+    return {
+      ...state,
+      isEdit: action.payload,
+    };
+  case 'GET_ID':
+    return {
+      ...state,
+      idToEdit: action.payload,
     };
   default:
     return state;

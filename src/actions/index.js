@@ -20,6 +20,16 @@ export const walletRemoveExpensesAction = (payload) => ({
   payload,
 });
 
+export const walletEditExpensesAction = (payload) => ({
+  type: 'EDIT_EXPENSES',
+  payload,
+});
+
+export const walletGetIdToEditAction = (payload) => ({
+  type: 'GET_ID',
+  payload,
+});
+
 export const fetchCurrencies = () => async (dispatch) => {
   const data = await fetchAPI();
   dispatch(walletCurrenciesAction(Object.keys(data)));

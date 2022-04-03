@@ -1,13 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { walletRemoveExpensesAction } from '../actions/index';
+import { walletRemoveExpensesAction,
+  walletEditExpensesAction, walletGetIdToEditAction } from '../actions/index';
 
 class Table extends React.Component {
-  deleteTable = (id) => {
-    const { walletExpensesDispatch, expenses } = this.props;
-    const filter = expenses.filter((element) => element.id !== id);
-    walletExpensesDispatch(filter);
+   deleteTable = (id) => {
+     const { walletExpensesDispatch, expenses } = this.props;
+     const filter = expenses.filter((element) => element.id !== id);
+     walletExpensesDispatch(filter);
+   }
+
+  editTableAndGetId = (id) => {
+    const { walletIsEditDispatch,
+      walletGetIdToEditDispatch,
+      expenses } = this.props;
+    const elementToEdit = expenses.find((element) => element.id === id);
+
+    walletIsEditDispatch(true);
+    walletGetIdToEditDispatch(elementToEdit.id);
   }
 
   render() {
@@ -46,8 +57,9 @@ class Table extends React.Component {
               <td>Real</td>
               <td>
                 <button
+                  data-testid="edit-btn"
                   type="button"
-                  // onClick={}
+                  onClick={ () => this.editTableAndGetId(expense.id) }
                 >
                   Editar
 
@@ -75,7 +87,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   walletExpensesDispatch: (value) => dispatch(walletRemoveExpensesAction(value)),
+  walletIsEditDispatch: (value) => dispatch(walletEditExpensesAction(value)),
+  walletGetIdToEditDispatch: (value) => dispatch(walletGetIdToEditAction(value)),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = ({
