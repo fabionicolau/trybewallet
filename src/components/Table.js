@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { walletRemoveExpensesAction,
-  walletEditExpensesAction, walletGetIdToEditAction } from '../actions/index';
+import {
+  walletRemoveExpensesAction,
+  walletEditExpensesAction, walletGetIdToEditAction,
+} from '../actions/index';
 
 class Table extends React.Component {
-   deleteTable = (id) => {
-     const { walletExpensesDispatch, expenses } = this.props;
-     const filter = expenses.filter((element) => element.id !== id);
-     walletExpensesDispatch(filter);
-   }
+  deleteTable = (id) => {
+    const { walletExpensesDispatch, expenses } = this.props;
+    const filter = expenses.filter((element) => element.id !== id);
+    walletExpensesDispatch(filter);
+  }
 
   editTableAndGetId = (id) => {
     const { walletIsEditDispatch,

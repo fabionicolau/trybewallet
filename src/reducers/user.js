@@ -7,7 +7,8 @@ const user = (state = USER_INITIAL_STATE, action) => {
   case 'CHANGE_USER':
     return {
       ...state,
-      email: action.payload };
+      email: action.payload,
+    };
   default:
     return state;
   }
