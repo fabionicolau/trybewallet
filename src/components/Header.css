@@ -1,0 +1,39 @@
+.header-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  justify-content: space-between;
+  margin: auto;
+  width: 90%;
+}
+
+.logo-container {
+  color: green;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.email-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  justify-content: flex-end;
+}
+
+.email {
+  margin-right: 50px;
+}
+
+.value-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  justify-content: flex-end;
+}
+
+.total {
+  margin-right: 10px;
+}

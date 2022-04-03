@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import { MdDelete } from 'react-icons/md';
+import { BsPencilSquare } from 'react-icons/bs';
+
 import {
   walletRemoveExpensesAction,
   walletEditExpensesAction, walletGetIdToEditAction,
 } from '../actions/index';
+import './Table.css';
 
 class Table extends React.Component {
   deleteTable = (id) => {
@@ -59,19 +63,21 @@ class Table extends React.Component {
               <td>Real</td>
               <td>
                 <button
+                  className="edit-btn"
                   data-testid="edit-btn"
                   type="button"
                   onClick={ () => this.editTableAndGetId(expense.id) }
                 >
-                  Editar
+                  <BsPencilSquare />
 
                 </button>
                 <button
+                  className="delete-btn"
                   data-testid="delete-btn"
                   type="button"
                   onClick={ () => this.deleteTable(expense.id) }
                 >
-                  Excluir
+                  <MdDelete />
 
                 </button>
               </td>

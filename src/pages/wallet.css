@@ -1,0 +1,28 @@
+.form-container {
+  align-items: center;
+  background-color: darkcyan;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 15px;
+  height: 10vh;
+  justify-content: center;
+}
+
+.value {
+  width: 60px;
+}
+
+.description {
+  width: 150px;
+}
+
+.inputs {
+  height: 25px;
+  margin-left: 10px;
+}
+
+.form-btn {
+  background-color: rgb(11, 93, 215);
+  color: white;
+  padding: 8px;
+}

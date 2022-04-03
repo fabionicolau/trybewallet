@@ -8,6 +8,7 @@ import {
 } from '../actions';
 import fetchAPI from '../helpers/fetchAPI';
 import Table from '../components/Table';
+import './wallet.css';
 
 const PAYMENT_METHOD = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const EXPENSE_TAG = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
@@ -88,14 +89,16 @@ class Wallet extends React.Component {
     return (
       <div>
         <Header />
-        <form action="">
+        <form className="form-container" action="">
           <label htmlFor="value">
             Valor:
             <input
+              className="inputs value"
               data-testid="value-input"
               id="value"
               type="number"
               name="value"
+              placeholder="0"
               value={ value }
               onChange={ this.handleInputChange }
             />
@@ -103,6 +106,7 @@ class Wallet extends React.Component {
           <label htmlFor="currency">
             Moeda:
             <select
+              className="inputs"
               data-testid="currency-input"
               name="currency"
               id="currency"
@@ -117,6 +121,7 @@ class Wallet extends React.Component {
           <label htmlFor="method">
             Método de pagamento:
             <select
+              className="inputs"
               data-testid="method-input"
               name="method"
               id="method"
@@ -131,6 +136,7 @@ class Wallet extends React.Component {
           <label htmlFor="tag">
             Categoria:
             <select
+              className="inputs"
               data-testid="tag-input"
               name="tag"
               id="tag"
@@ -145,10 +151,12 @@ class Wallet extends React.Component {
           <label htmlFor="description">
             Descrição:
             <input
+              className="inputs description"
               data-testid="description-input"
               id="description"
               type="text"
               name="description"
+              placeholder="descrição"
               value={ description }
               onChange={ this.handleInputChange }
             />
@@ -157,6 +165,7 @@ class Wallet extends React.Component {
           {isEdit
             ? (
               <button
+                className="form-btn"
                 type="submit"
                 onClick={ this.handleEditTable }
               >
@@ -166,6 +175,7 @@ class Wallet extends React.Component {
             )
             : (
               <button
+                className="form-btn"
                 type="submit"
                 onClick={ this.handleSubmit }
               >

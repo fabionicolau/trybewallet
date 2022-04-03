@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { userAction } from '../actions';
+import './Login.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -47,38 +48,41 @@ class Login extends React.Component {
   render() {
     const { email, password, isDisabled } = this.state;
     return (
-      <div className="login-container">
-        <label htmlFor="email">
-          email:
-          <input
-            data-testid="email-input"
-            id="email"
-            type="email"
-            name="email"
-            value={ email }
-            onChange={ this.handleInputChange }
-          />
-        </label>
-        <label htmlFor="password">
-          senha:
-          <input
-            data-testid="password-input"
-            id="password"
-            type="password"
-            name="password"
-            value={ password }
-            onChange={ this.handleInputChange }
-          />
-        </label>
-        <button
-          type="submit"
-          disabled={ isDisabled }
-          onClick={ this.handleSubmit }
-        >
-          Entrar
+      <section className="body-login-container">
+        <div className="login-container">
+          <h1 className="logo">TRYBEWALLET</h1>
+          <label htmlFor="email">
+            email:
+            <input
+              data-testid="email-input"
+              id="email"
+              type="email"
+              name="email"
+              value={ email }
+              onChange={ this.handleInputChange }
+            />
+          </label>
+          <label htmlFor="password">
+            senha:
+            <input
+              data-testid="password-input"
+              id="password"
+              type="password"
+              name="password"
+              value={ password }
+              onChange={ this.handleInputChange }
+            />
+          </label>
+          <button
+            type="submit"
+            disabled={ isDisabled }
+            onClick={ this.handleSubmit }
+          >
+            Entrar
 
-        </button>
-      </div>
+          </button>
+        </div>
+      </section>
     );
   }
 }
