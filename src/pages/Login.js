@@ -50,7 +50,10 @@ class Login extends React.Component {
     return (
       <section className="body-login-container">
         <div className="login-container">
-          <h1 className="logo">TRYBEWALLET</h1>
+          <h1 className="logo">
+            TRYBE
+            <span>WALLET</span>
+          </h1>
           <label htmlFor="email">
             email:
             <input
