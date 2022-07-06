@@ -3,8 +3,6 @@
 <p>O desafio foi criar uma carteira de simulação de gastos com conversão automática da moeda escolhida para real.
 <p>Na aplicação é possível adicionar, editar e excluir gastos e, a cada modificação, o valor total é atualizado.</p>
 
-<p>obs: As imagens dos planetas e as informações das missões são fornecidas no projeto.</p>
-
 <h1>Instalando</h1>
 
 <p>Para instalar, basta executar o comando <code>npm install</code> no diretório raiz do projeto.</p>
